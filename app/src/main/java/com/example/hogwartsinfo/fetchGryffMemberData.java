@@ -21,10 +21,12 @@ public class fetchGryffMemberData extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
+            //Getting json
             URL url = new URL("https://jsonkeeper.com/b/KLN4");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            //Getting data without parsing
             String line = "";
             while(line != null)
             {
@@ -32,6 +34,7 @@ public class fetchGryffMemberData extends AsyncTask<Void, Void, Void> {
                 data = data + line;
             }
 
+            //Parsing data
             JSONArray JA = new JSONArray(data);
             for(int i =0; i < JA.length(); i++)
             {

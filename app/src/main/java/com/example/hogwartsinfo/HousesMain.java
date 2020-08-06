@@ -10,8 +10,7 @@ import android.widget.TextView;
 public class HousesMain extends AppCompatActivity {
     //For House info:
     //https://www.potterapi.com/v1/houses?key=%242a%2410%241JEnmtEF417yBaFZcr51qukRjaKv8d5toEG5DKP%2FIUZWIVwfsaF7y
-
-
+    //Variables:
     Button loadHouses;
     public static TextView houseData;
 

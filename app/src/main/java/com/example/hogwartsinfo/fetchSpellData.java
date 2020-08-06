@@ -21,17 +21,19 @@ public class fetchSpellData extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
+            //getting json
             URL url = new URL("https://www.potterapi.com/v1/spells?key=$2a$10$1JEnmtEF417yBaFZcr51qukRjaKv8d5toEG5DKP/IUZWIVwfsaF7y");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            //display without parsing
             String line = "";
             while(line != null)
             {
                 line = bufferedReader.readLine();
                 data = data + line;
             }
-
+            //parsing
             JSONArray JA = new JSONArray(data);
             for (int i = 0; i < JA.length(); i++)
             {

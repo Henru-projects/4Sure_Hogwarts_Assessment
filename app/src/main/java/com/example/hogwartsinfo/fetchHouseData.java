@@ -22,17 +22,18 @@ public class fetchHouseData extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try {
+            //Getting json
             URL url = new URL("https://www.potterapi.com/v1/houses?key=%242a%2410%241JEnmtEF417yBaFZcr51qukRjaKv8d5toEG5DKP%2FIUZWIVwfsaF7y");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
+            //Getting data without parsing
             String line = "";
             while(line != null){
                 line = bufferedReader.readLine();
                 data = data + line;
             }
-
+            //parsing
             JSONArray JA = new JSONArray(data);
             for (int i = 0; i<JA.length(); i++)
             {
@@ -44,9 +45,8 @@ public class fetchHouseData extends AsyncTask<Void, Void, Void> {
                                 "House Ghost: " + JO.get("houseGhost") + "\n" +
                                 "Founder: " + JO.get("founder") + "\n" +
                                 "Values: " + JO.get("values") + "\n" +
-                                "Colours: " + JO.get("colors") + "\n";
-
-
+                                "Colours: " + JO.get("colors")  + " " + " " +
+                                "↓" + "\n";
 
                 dataParsed = dataParsed + singleParsed + "\n";
             }

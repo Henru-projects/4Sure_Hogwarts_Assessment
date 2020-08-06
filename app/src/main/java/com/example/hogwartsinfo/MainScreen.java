@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -21,6 +22,8 @@ public class MainScreen extends AppCompatActivity {
     ImageButton studentBtnClick;
     ImageButton sortingHatBtnClick;
     TextView sortingHatResult;
+    private long backPressTime;
+    private Toast backToast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,5 +95,19 @@ public class MainScreen extends AppCompatActivity {
         Intent intent = new Intent(MainScreen.this, StudentMain.class);
         startActivity(intent);
     }
+    //double click to exit
+    @Override
+    public void onBackPressed() {
 
+        if(backPressTime + 2000 > System.currentTimeMillis())
+        {
+            backToast.cancel();
+            super.onBackPressed();
+            return;
+        }else{
+            backToast = Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_SHORT);
+            backToast.show();
+        }
+        backPressTime = System.currentTimeMillis();
+    }
 }
